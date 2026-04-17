@@ -1,0 +1,126 @@
+/* ============================================================
+   CSS CUSTOM PROPERTIES
+   ============================================================ */
+:root {
+  --bg-primary: #0a0a0f;
+  --bg-secondary: #0f0f17;
+  --bg-card: #13131e;
+  --bg-card-hover: #181826;
+  --border: rgba(255,255,255,0.07);
+  --border-hover: rgba(255,255,255,0.15);
+  --text-primary: #f0f0f8;
+  --text-secondary: #8888aa;
+  --text-muted: #4a4a6a;
+  --accent: #7c6af7;
+  --accent-glow: rgba(124,106,247,0.3);
+  --accent-2: #06d6a0;
+  --accent-3: #ff6b6b;
+  --font-display: 'Syne', sans-serif;
+  --font-body: 'Onest', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  --radius: 16px;
+  --radius-sm: 8px;
+  --easing: cubic-bezier(0.16, 1, 0.3, 1);
+  --transition: 0.4s var(--easing);
+}
+
+[data-theme="light"] {
+  --bg-primary: #f8f8fc;
+  --bg-secondary: #f0f0f8;
+  --bg-card: #ffffff;
+  --bg-card-hover: #f5f5fc;
+  --border: rgba(0,0,0,0.07);
+  --border-hover: rgba(0,0,0,0.15);
+  --text-primary: #0a0a1a;
+  --text-secondary: #555577;
+  --text-muted: #aaaacc;
+  --accent-glow: rgba(124,106,247,0.15);
+}
+
+/* ============================================================
+   RESET & BASE
+   ============================================================ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  overflow-x: hidden;
+  line-height: 1.6;
+  transition: background 0.5s var(--easing), color 0.5s var(--easing);
+  -webkit-font-smoothing: antialiased;
+  position: relative;
+}
+
+/* Premium Noise Texture Overlay */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("https://grainy-gradients.vercel.app/noise.svg");
+  filter: contrast(120%) brightness(110%);
+  opacity: 0.05;
+  pointer-events: none;
+  z-index: 9999;
+}
+
+::selection { background: var(--accent-glow); color: var(--text-primary); }
+
+a { text-decoration: none; color: inherit; cursor: pointer; }
+button { border: none; background: none; font: inherit; cursor: pointer; }
+ul { list-style: none; }
+
+/* ============================================================
+   UTILITIES
+   ============================================================ */
+.container { max-width: 1200px; margin: 0 auto; padding: 0 40px; }
+section { padding: 120px 0; position: relative; }
+
+.section-label {
+  font-family: var(--font-mono);
+  font-size: 12px; font-weight: 500;
+  color: var(--accent);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+  display: flex; align-items: center; gap: 12px;
+}
+.section-label::before {
+  content: '';
+  display: block; width: 30px; height: 1px;
+  background: var(--accent);
+}
+
+.section-title {
+  font-family: var(--font-display);
+  font-size: clamp(36px, 5vw, 56px);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  margin-bottom: 60px;
+}
+
+.gradient-text {
+  background: linear-gradient(135deg, var(--accent) 0%, #a78bfa 40%, var(--accent-2) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: var(--bg-primary); }
+::-webkit-scrollbar-thumb { background: var(--border-hover); border-radius: 10px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-muted); }
+
+@media (max-width: 768px) {
+  .container { padding: 0 20px; }
+  section { padding: 80px 0; }
+}
